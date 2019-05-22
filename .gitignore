@@ -1,2 +1,4 @@
 .vscode
 Pipfile.lock
+api_key.txt
+.ipynb_checkpoints

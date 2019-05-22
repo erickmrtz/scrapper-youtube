@@ -5,9 +5,10 @@ Basada en [Trending Youtube Video Scrapper](https://github.com/DataSnaek/Trendin
 
 ### Pre-requisitos
 Se necesita un API Key de Google, puede obtenerse [aqui](https://developers.google.com)
+Recordatorio: Solo se permiten hasta 10000 consultas por dia
 
 ### Uso de los archivos
 ```
-    python scraper_trending.py
-    python scraper.py --output_dir <path>
+    python scraper_trending.py --output_dir trending/
+    python scraper.py --output_dir notrending/
 ```

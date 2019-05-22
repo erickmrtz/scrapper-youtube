@@ -27,7 +27,7 @@ def setup(api_path, id_path):
     channel_ids = []
     
     for id_code in id_codes:
-        df = pd.read_csv(f"trending/trending_{id_code}_videos.csv")
+        df = pd.read_csv(f"trending/trending_{id_code}_{datetime.today().strftime('%Y-%m-%d')}_videos.csv")
         channel_id = list(set(df['channelId'].values))
         #print(f"datos : {channel_id[:3]} proviene de {id_code}")
         channel_ids.append(channel_id)
@@ -49,7 +49,6 @@ def get_uploads_id(channel_id):
         print("Temp-Banned due to excess requests, please wait and continue later")
         sys.exit()
     request = request.json()
-    print(request)
     items = request.get('items', [])
     
     try:
@@ -141,7 +140,6 @@ def get_pages(channel_ids):
         items = uploaded_videos.get('items',[])
         
         for item in items:
-            #print(f"{item}\n")
             snippet = item['snippet']
             videoId = snippet.get('resourceId','').get('videoId','')
             
@@ -179,8 +177,8 @@ def get_data():
 if __name__ == "__main__":
 
     parser = argparse.ArgumentParser()
-    parser.add_argument('--key_path', help='Path to the file containing the api key, by default will use api_key.txt in the same directory', default='requirements/api_key.txt')
-    parser.add_argument('--country_code_path', help='Path to the file containing the list of country codes to scrape, by default will use country_codes.txt in the same directory', default='requirements/country_codes.txt')
+    parser.add_argument('--key_path', help='Path to the file containing the api key, by default will use api_key.txt in the same directory', default='api_key.txt')
+    parser.add_argument('--country_code_path', help='Path to the file containing the list of country codes to scrape, by default will use country_codes.txt in the same directory', default='country_codes.txt')
     parser.add_argument('--output_dir', help='Path to save the outputted files in', default='output/')
 
     args = parser.parse_args()
